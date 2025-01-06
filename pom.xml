@@ -5,13 +5,11 @@
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <!-- Updated Spring Boot Parent Version -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <!-- Update to a newer Spring Boot version for Java 17 compatibility -->
-        <version>2.7.10</version> <!-- Example: Update to 2.7.10 or the latest compatible version -->
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.7.10</version>
+        <relativePath/>
     </parent>
     
     <groupId>com.valaxy</groupId>
@@ -22,49 +20,48 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <!-- Updated Java version to 17 -->
         <java.version>17</java.version>
-        
-        <!-- Define plugin versions as properties for easier management -->
         <maven.surefire.plugin.version>3.0.0-M7</maven.surefire.plugin.version>
         <jacoco.version>0.8.8</jacoco.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.7.10</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-        <!-- Spring Boot Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- GitHub API Dependency -->
         <dependency>
             <groupId>org.kohsuke</groupId>
             <artifactId>github-api</artifactId>
             <version>1.99</version>
         </dependency>
-        
-        <!-- Twitter4J Dependency -->
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
             <version>3.0.6</version>
         </dependency>
-
-        <!-- JUnit Dependency -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-        
-        <!-- Spring Boot Test Dependencies with Exclusions -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -74,18 +71,8 @@
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>org.junit.jupiter.api</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
-        
-        <!-- Mockito Dependency -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
@@ -95,13 +82,10 @@
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <!-- Updated Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -110,12 +94,8 @@
                     <argLine>
                         --add-opens java.base/java.lang=ALL-UNNAMED -Xmx2048m ${surefire.argLine}
                     </argLine>
-                    <!-- Optional: Enable debug for the forked JVM -->
-                    <!-- <debugForkedProcess>true</debugForkedProcess> -->
                 </configuration>
             </plugin>
-
-            <!-- Updated JaCoCo Maven Plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -131,7 +111,6 @@
                             <propertyName>surefire.argLine</propertyName>
                         </configuration>
                     </execution>
-                    <!-- Attached to Maven test phase -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
@@ -141,8 +120,6 @@
                     </execution>
                 </executions>
             </plugin>
-            
-            <!-- Maven Compiler Plugin (Optional: Explicit Configuration) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
