@@ -4,14 +4,29 @@
                               https://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>central</id> <!-- Must match the repository ID -->
+            <id>virtual-cloverInfotech</id> <!-- Virtual repository credentials -->
             <username>admin</username>
             <password>password</password>
         </server>
         <server>
-            <id>snapshots</id> <!-- Must match the snapshotRepository ID -->
+            <id>central</id>
+            <username>admin</username>
+            <password>password</password>
+        </server>
+        <server>
+            <id>snapshots</id>
             <username>admin</username>
             <password>password</password>
         </server>
     </servers>
+    
+    <mirrors>
+        <mirror>
+            <id>virtual-cloverInfotech</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://192.168.219.129:8081/artifactory/virtual-cloverInfotech/</url>
+        </mirror>
+
+    </mirrors>
 </settings>
+
