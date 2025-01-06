@@ -157,8 +157,14 @@
 
     <distributionManagement>
         <repository>
-            <id>dev</id>
-            <url>file://jarstaging</url>
+            <id>central</id>
+            <name>ubuntu-releases</name>
+            <url>http://192.168.219.129:8082/artifactory/local-CloverInfotech</url>
         </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>ubuntu-snapshots</name>
+            <url>http://192.168.219.129:8082/artifactory/local-CloverInfotech</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>
